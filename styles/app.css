@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.glass-container {
+  backdrop-filter: blur(17px) saturate(200%);
+  background-color: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+#signature {
+  stroke-dasharray: 1993;
+  stroke-dashoffset: 1993;
+}
+
+.cut-text {
+  display: -webkit-box;
+  overflow: hidden;
+  max-height: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+}
+
+.sign-animate {
+  animation: dash 2s ease-in-out forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
