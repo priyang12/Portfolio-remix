@@ -5,10 +5,9 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { Ring } from "@priyang/react-component-lib";
-import matter from "gray-matter";
 import path from "path";
-import fs from "fs";
-import { GetProjectList } from "~/Utils/Mdx.server";
+import { GetProjectList, GetProject } from "~/Utils/Mdx.server";
+import { LoaderData } from "./Projects/$Slug";
 
 const HeroContainer = () => {
   return (
@@ -91,31 +90,23 @@ function TopProjectSection({
 }
 
 export const loader: LoaderFunction = async () => {
-  const _dirname = path.resolve();
-
   const ProjectsFileName = GetProjectList();
-  const ProjectsData = ProjectsFileName.slice(0, 3).map((project) => {
-    const data = fs.readFileSync(
-      path.join(_dirname, `/content/Projects/${project}`),
-      "utf-8"
-    );
-    const { data: frontmatter } = matter(data);
-    return {
-      ...frontmatter,
-      Title: frontmatter.Title,
-      Description: frontmatter.Description,
-      FileName: path.parse(project).name,
-    };
-  });
-  const Projects = ProjectsData.map((project) => {
-    return {
-      FileName: project.FileName,
-      Title: project.Title,
-      Description: project.Description,
-    };
-  }) as returnData["ProjectsData"];
+  const data = [] as any[];
 
-  return json(Projects);
+  const GetProjects = async () => {
+    for (let project in ProjectsFileName) {
+      const ProjectData = await GetProject<LoaderData>(
+        ProjectsFileName[project]
+      );
+      data.push({
+        ...ProjectData.frontmatter,
+        FileName: path.parse(project).name,
+      });
+    }
+  };
+  await GetProjects();
+
+  return json(data);
 };
 
 export default function Index() {

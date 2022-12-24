@@ -18,7 +18,7 @@ export const GetProjectList = () => {
   }
 };
 
-export const GetProject = async <T extends { [key: string]: any }>(
+export const GetProject = async <T extends { [key: string]: unknown }>(
   name: string
 ) => {
   const CacheKey = "Project" + name;

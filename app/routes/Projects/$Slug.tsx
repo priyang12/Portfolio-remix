@@ -1,15 +1,13 @@
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
-import { bundleMDX } from "~/Utils/Mdx.server";
-import fs from "fs";
-import path from "path";
+import { GetProject } from "~/Utils/Mdx.server";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 
-type LoaderData = {
+export type LoaderData = {
   Title: string;
   Description: string;
   TechName: string;
@@ -20,27 +18,12 @@ type LoaderData = {
   Video: string;
 };
 
-type LoaderReturnType = {
-  frontmatter: LoaderData;
-  code: string;
-};
-
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const { Slug } = params;
-  const _dir = path.resolve();
+
   if (!Slug) return redirect("/projects");
   try {
-    console.log(Slug);
-
-    const ProjectData = fs.readFileSync(
-      `${_dir}/content/Projects/${Slug}.md`,
-      "utf-8"
-    );
-
-    const { code, frontmatter } = await bundleMDX({
-      source: ProjectData,
-      cwd: process.cwd(),
-    });
+    const { code, frontmatter } = await GetProject<LoaderData>(`${Slug}.md`);
 
     return json(
       { frontmatter, code },
@@ -52,7 +35,8 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Project() {
-  const { frontmatter, code } = useLoaderData<LoaderReturnType>();
+  const { frontmatter, code } = useLoaderData<typeof loader>();
+
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
@@ -62,7 +46,7 @@ export default function Project() {
         <a
           href={frontmatter.GithubLink}
           target="_blank"
-          className="btn btn-secondary text-white"
+          className="btn-secondary btn text-white"
           rel="noreferrer"
         >
           <FiGithub />
@@ -85,7 +69,7 @@ export default function Project() {
             <a
               href={frontmatter.ProjectLink}
               target="_blank"
-              className="btn btn-primary hover:text-white"
+              className="btn-primary btn hover:text-white"
               rel="noreferrer"
             >
               <h2 id="Client Link">

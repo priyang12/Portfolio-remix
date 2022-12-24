@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import fs from "fs";
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
@@ -102,7 +101,7 @@ const ProjectsSections = () => {
           ringColor="#fff"
           OuterRingColor="#0f1729"
           onClick={FetchMore}
-          className="btn btn-secondary my-md text-2xl sm:btn-block"
+          className="btn-secondary btn my-md text-2xl sm:btn-block"
         >
           <button>
             {fetcher.state === "loading" ? "Loading" : "Load More"}
