@@ -8,30 +8,31 @@ import { Ring } from "@priyang/react-component-lib";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
+import { GetProjectList } from "~/Utils/Mdx.server";
 
 const HeroContainer = () => {
   return (
     <section className="my-xl mt-md sm:px-md">
       <div className="px-sm md:m-sm md:mx-md">
         <div className="font-VT323">
-          <h1 className="text-primary text-7xl">{Title}</h1>
-          <h2 className="text-primary my-5 text-5xl">{Subtitle} 👋</h2>
-          <p className="text-primary my-5 text-3xl">{Description}</p>
+          <h1 className="text-7xl text-primary">{Title}</h1>
+          <h2 className="my-5 text-5xl text-primary">{Subtitle} 👋</h2>
+          <p className="my-5 text-3xl text-primary">{Description}</p>
         </div>
-        <div className="font-Roboto my-5 flex flex-col gap-5 sm:flex-row">
+        <div className="my-5 flex flex-col gap-5 font-Roboto sm:flex-row">
           <a href={Github}>
-            <button className="btn btn-secondary w-full gap-2 hover:text-white">
+            <button className="btn-secondary btn w-full gap-2 hover:text-white">
               <FiGithub />
               Github
             </button>
           </a>
           <a href={Twitter}>
-            <button className="btn btn-primary w-full gap-2 hover:text-white">
+            <button className="btn-primary btn w-full gap-2 hover:text-white">
               <FiTwitter /> Twitter
             </button>
           </a>
           <a href={Linkedin}>
-            <button className="btn btn-secondary w-full gap-2 hover:text-white">
+            <button className="btn-secondary btn w-full gap-2 hover:text-white">
               <FiLinkedin />
               Linkedin
             </button>
@@ -61,7 +62,7 @@ function TopProjectSection({
         <Ring
           ringColor="#fff"
           OuterRingColor="#0f1729"
-          className="bg-primary px-sm text-secondary-content sm:py-sm md:px-md m-auto w-fit rounded-xl text-center text-3xl md:rounded-3xl"
+          className="m-auto w-fit rounded-xl bg-primary px-sm text-center text-3xl text-secondary-content sm:py-sm md:rounded-3xl md:px-md"
         >
           <h1>Top of Projects</h1>
         </Ring>
@@ -72,11 +73,11 @@ function TopProjectSection({
           Show All Projects
         </Link>
       </div>
-      <ul className="menu rounded-box my-sm bg-base-100 w-full p-2">
+      <ul className="menu rounded-box my-sm w-full bg-base-100 p-2">
         {ProjectList.map((project) => (
           <Link to={`Projects/${project.FileName}`} key={project.Title}>
             <li className="my-sm rounded-lg ring-2 ring-purple-500 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900">
-              <div className="gap-md flex flex-col md:flex-row">
+              <div className="flex flex-col gap-md md:flex-row">
                 <h2 className="text-2xl md:w-1/4">{project.Title}</h2>
                 <div className="divider lg:divider-horizontal"></div>
                 <p className="w-3/4 text-xl">{project.Description}</p>
@@ -92,13 +93,10 @@ function TopProjectSection({
 export const loader: LoaderFunction = async () => {
   const _dirname = path.resolve();
 
-  const ProjectsFileName = fs.readdirSync(
-    path.join(_dirname + `/content/Projects`)
-  );
-
+  const ProjectsFileName = GetProjectList();
   const ProjectsData = ProjectsFileName.slice(0, 3).map((project) => {
     const data = fs.readFileSync(
-      path.join(_dirname + `/content/Projects/${project}`),
+      path.join(_dirname, `/content/Projects/${project}`),
       "utf-8"
     );
     const { data: frontmatter } = matter(data);
