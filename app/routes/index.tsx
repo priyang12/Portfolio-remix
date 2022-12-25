@@ -74,7 +74,11 @@ function TopProjectSection({
       </div>
       <ul className="menu rounded-box my-sm w-full bg-base-100 p-2">
         {ProjectList.map((project) => (
-          <Link to={`Projects/${project.FileName}`} key={project.Title}>
+          <Link
+            to={`Projects/${project.FileName}`}
+            key={project.Title}
+            prefetch="intent"
+          >
             <li className="my-sm rounded-lg ring-2 ring-purple-500 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900">
               <div className="flex flex-col gap-md md:flex-row">
                 <h2 className="text-2xl md:w-1/4">{project.Title}</h2>
@@ -107,7 +111,7 @@ export const loader: LoaderFunction = async () => {
       );
       data.push({
         ...ProjectData.frontmatter,
-        FileName: path.parse(project).name,
+        FileName: path.parse(ProjectsFileName[project]).name,
       });
     }
   };

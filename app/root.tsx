@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { ErrorBoundaryComponent, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -11,6 +11,7 @@ import Footer from "./Component/Footer";
 import Navbar from "./Component/Navbar";
 import styles from "./styles/app.css";
 import LibStyles from "@priyang/react-component-lib/dist/index.css";
+import CustomErrorBoundary from "./Component/ErrorBoundary";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -55,6 +56,22 @@ export default function App() {
         <Scripts />
         <LiveReload />
         <Footer />
+      </body>
+    </html>
+  );
+}
+
+export function ErrorBoundary({ error }: any) {
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <CustomErrorBoundary error={error} />
+        <Scripts />
       </body>
     </html>
   );

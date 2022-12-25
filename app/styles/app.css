@@ -4070,6 +4070,10 @@ html {
   margin-right: auto;
 }
 
+.mt-md {
+  margin-top: 60px;
+}
+
 .ml-sm {
   margin-left: 40px;
 }
@@ -4088,10 +4092,6 @@ html {
 
 .mt-sm {
   margin-top: 40px;
-}
-
-.mt-md {
-  margin-top: 60px;
 }
 
 .mt-5 {
@@ -4363,6 +4363,10 @@ html {
   fill: currentColor;
 }
 
+.p-2xl {
+  padding: 200px;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -4421,6 +4425,11 @@ html {
   font-family: 'cursive';
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -4439,11 +4448,6 @@ html {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .text-7xl {
@@ -4466,6 +4470,11 @@ html {
 
 .leading-10 {
   line-height: 2.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .text-neutral-content {
@@ -4491,11 +4500,6 @@ html {
 .text-base-content {
   --tw-text-opacity: 1;
   color: hsl(var(--bc) / var(--tw-text-opacity));
-}
-
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .underline {

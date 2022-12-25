@@ -9,6 +9,5 @@ node_modules
 sounds
 .wav
 LRUCACHE.server.ts
-styles/app.css  
 
 .vscode
