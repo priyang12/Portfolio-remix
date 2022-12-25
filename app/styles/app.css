@@ -2283,6 +2283,13 @@ html {
   flex-grow: 1;
 }
 
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
 .card figure {
   display: flex;
   align-items: center;
@@ -3348,6 +3355,15 @@ html {
   line-height: 1.25rem;
 }
 
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
 .card.image-full :where(figure) {
   overflow: hidden;
   border-radius: inherit;
@@ -3922,10 +3938,18 @@ html {
   line-height: 1.25rem;
 }
 
+.card-compact .card-title {
+  margin-bottom: 0.25rem;
+}
+
 .card-normal .card-body {
   padding: var(--padding-card, 2rem);
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.card-normal .card-title {
+  margin-bottom: 0.75rem;
 }
 
 .modal-bottom :where(.modal-box) {
@@ -4006,6 +4030,10 @@ html {
   margin: auto;
 }
 
+.m-2xl {
+  margin: 200px;
+}
+
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -4024,6 +4052,11 @@ html {
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+
+.mx-2xl {
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .mx-md {
@@ -4070,6 +4103,10 @@ html {
   margin-top: 60px;
 }
 
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
 .mr-xl {
   margin-right: 100px;
 }
@@ -4110,12 +4147,12 @@ html {
   height: 100vh;
 }
 
-.min-h-\[50\%\] {
-  min-height: 50%;
-}
-
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-\[50\%\] {
+  min-height: 50%;
 }
 
 .w-full {
@@ -4296,6 +4333,11 @@ html {
   border-color: hsl(var(--s) / var(--tw-border-opacity));
 }
 
+.border-primary-focus {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--pf, var(--p)) / var(--tw-border-opacity));
+}
+
 .border-primary {
   --tw-border-opacity: 1;
   border-color: hsl(var(--p) / var(--tw-border-opacity));
@@ -4382,6 +4424,10 @@ html {
 
 .font-VT323 {
   font-family: VT323, monospace;
+}
+
+.font-\[\'cursive\'\] {
+  font-family: 'cursive';
 }
 
 .text-3xl {
@@ -4567,12 +4613,6 @@ html {
 @media (prefers-color-scheme: dark) {
   .dark\:ring-offset-slate-900 {
     --tw-ring-offset-color: #0f172a;
-  }
-}
-
-@media (min-width: 350px) {
-  .xs\:flex-row {
-    flex-direction: row;
   }
 }
 

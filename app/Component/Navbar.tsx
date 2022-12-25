@@ -20,9 +20,10 @@ function Navbar() {
       <div className="flex-1"></div>
 
       <div className="w-full flex-none justify-center sm:w-fit sm:justify-end">
-        <ul className="flex flex-col p-0 xs:flex-row">
+        <ul className="flex flex-col p-0 sm:flex-row">
           <li>
             <Link
+              prefetch="intent"
               to="/Projects"
               className="btn-ghost btn p-3 text-xl normal-case"
             >
@@ -31,6 +32,16 @@ function Navbar() {
           </li>
           <li>
             <Link
+              prefetch="intent"
+              to="/Blogs"
+              className="btn-ghost btn p-3 text-xl normal-case"
+            >
+              Blogs
+            </Link>
+          </li>
+          <li>
+            <Link
+              prefetch="intent"
               to="/FunZone"
               className="btn-ghost btn p-3 text-xl normal-case"
             >
@@ -39,6 +50,7 @@ function Navbar() {
           </li>
           <li>
             <Link
+              prefetch="intent"
               to="/AboutMe"
               className="btn-ghost btn p-3 text-xl normal-case"
             >

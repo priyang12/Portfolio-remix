@@ -41,3 +41,65 @@ export const GetProject = async <T extends { [key: string]: unknown }>(
     return { frontmatter, code };
   }
 };
+
+export const GetAllBlogPostNames = async () => {
+  const CacheKey = "Posts";
+  if (cache.has(CacheKey)) {
+    return cache.get(CacheKey) as string[];
+  } else {
+    const _dirname = path.resolve();
+    const BlogFileNames = fs.readdirSync(_dirname + "/content/Blogs");
+    cache.set(CacheKey, BlogFileNames, 60 * 60 * 24);
+    return BlogFileNames;
+  }
+};
+
+export const GetBlog = async <T extends { [key: string]: unknown }>(
+  name: string
+) => {
+  const CacheKey = "Blogs/" + name;
+  if (cache.has(CacheKey)) {
+    return cache.get(CacheKey) as {
+      frontmatter: T;
+      code: string;
+    };
+  } else {
+    const _dirname = path.resolve();
+    const { frontmatter, code } = await bundleMDX<T>({
+      file: _dirname + `/content/Blogs/${name}`,
+      cwd: process.cwd(),
+      mdxOptions(options, frontmatter) {
+        options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypeSlug];
+        return options;
+      },
+    });
+    cache.set(CacheKey, { frontmatter, code }, 60 * 60 * 24);
+    return { frontmatter, code };
+  }
+};
+
+export const GetAllBlogs = async <T extends { [key: string]: unknown }>(
+  BlogsNames: string[]
+) => {
+  const Data = [] as {
+    frontmatter: T & { FileName: string };
+    code: string;
+  }[];
+
+  const Blogs = async () => {
+    for (let index = 0; index < BlogsNames.length; index++) {
+      const Name = BlogsNames[index];
+      const Blog = await GetBlog<T>(Name);
+      Data.push({
+        ...Blog,
+        frontmatter: {
+          ...Blog.frontmatter,
+          FileName: path.parse(Name).name,
+        },
+      });
+    }
+  };
+  await Blogs();
+
+  return Data;
+};

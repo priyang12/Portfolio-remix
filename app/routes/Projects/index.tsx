@@ -27,11 +27,8 @@ export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const Page = Number(url.searchParams.get("page") || 1);
   const PerPage = 3;
-
-  const _dirname = path.resolve();
   const Projects = [] as LoaderType;
   const ProjectsFileNames = GetProjectList();
-  // const TotalProjects = ProjectsFileNames.length;
 
   const PageProjects = ProjectsFileNames.slice(
     PerPage * (Page - 1),
@@ -48,13 +45,7 @@ export const loader = async ({ request }: LoaderArgs) => {
     });
   }
 
-  return json(Projects, {
-    status: 202,
-    headers: {
-      "cache-control": "max-age=3600",
-      // "x-total-count": `${TotalProjects}`,
-    },
-  });
+  return json(Projects);
 };
 
 const ProjectsSections = () => {
@@ -66,7 +57,7 @@ const ProjectsSections = () => {
 
   useEffect(() => {
     if (Page > 1) {
-      fetcher.load(`/projects?index&page=${Page}`);
+      fetcher.load(`/Projects?index&page=${Page}`);
     }
   }, [Page]);
 

@@ -94,7 +94,7 @@ export const loader: LoaderFunction = async () => {
   const data = [] as any[];
 
   const GetProjects = async () => {
-    for (let project in ProjectsFileName) {
+    for (let project in ProjectsFileName.slice(0, 3)) {
       const ProjectData = await GetProject<LoaderData>(
         ProjectsFileName[project]
       );
@@ -105,7 +105,6 @@ export const loader: LoaderFunction = async () => {
     }
   };
   await GetProjects();
-
   return json(data);
 };
 

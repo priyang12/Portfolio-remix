@@ -20,6 +20,7 @@
     "clsx": "^1.2.1",
     "cross-env": "^7.0.3",
     "daisyui": "^2.22.0",
+    "date-fns": "^2.29.3",
     "esbuild": "^0.15.10",
     "lru-cache": "^7.14.1",
     "match-sorter": "^6.3.1",
