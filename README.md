@@ -60,3 +60,9 @@ netlify deploy --build
 # production deployment
 netlify deploy --build --prod
 ```
+
+## Todo
+
+- Implement News Letter
+- Github Login
+- Caching

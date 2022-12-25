@@ -1,6 +1,6 @@
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
@@ -25,13 +25,25 @@ export const loader = async ({ params }: LoaderArgs) => {
   try {
     const { code, frontmatter } = await GetProject<LoaderData>(`${Slug}.md`);
 
-    return json(
-      { frontmatter, code },
-      { headers: { "cache-control": "max-age=3600" } }
-    );
+    return json({ frontmatter, code });
   } catch (error) {
     return redirect("/");
   }
+};
+
+export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
+  if (!data) {
+    return {
+      title: "Missing Project",
+      description: `There is no Project with the name of ${params.Slug}. 😢`,
+    };
+  }
+  const { frontmatter } = data;
+
+  return {
+    title: frontmatter.Title,
+    description: frontmatter.Description,
+  };
 };
 
 export default function Project() {

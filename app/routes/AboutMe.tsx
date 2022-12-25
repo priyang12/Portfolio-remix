@@ -1,5 +1,14 @@
+import { MetaFunction } from "@remix-run/node";
 import { VisibleElement } from "~/Component/VisibilitySensor";
 import SignSvgIcon from "../Component/Sign";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "About Me",
+    description:
+      "Information about my career and job. i also provides contact information",
+  };
+};
 
 const AboutMe = () => {
   return (

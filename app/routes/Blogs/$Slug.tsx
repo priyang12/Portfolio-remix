@@ -1,25 +1,37 @@
 import * as React from "react";
-import { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
-import { json, redirect } from "react-router";
+import { redirect } from "react-router";
 import { GetBlog } from "~/Utils/Mdx.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { Slug } = params;
   if (!Slug) return redirect("/Blogs");
-
   try {
     const { code, frontmatter } = await GetBlog<MdxPage["frontmatter"]>(
       `${Slug}.mdx`
     );
-    return json(
-      { frontmatter, code },
-      { headers: { "cache-control": "max-age=3600" } }
-    );
+
+    return json({ frontmatter, code });
   } catch (error) {
     return redirect("/");
   }
+};
+
+export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
+  if (!data) {
+    return {
+      title: "Missing Project",
+      description: `There is no Project with the name of ${params.Slug}. 😢`,
+    };
+  }
+  const { frontmatter } = data;
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description,
+  };
 };
 
 export default function Blogs() {
@@ -28,7 +40,7 @@ export default function Blogs() {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <div className="mx-2xl my-xl">
+    <div className="my-xl md:mx-2xl">
       <figure>
         <img
           src={frontmatter.ImageURL}

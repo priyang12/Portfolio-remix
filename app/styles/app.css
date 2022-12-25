@@ -4030,10 +4030,6 @@ html {
   margin: auto;
 }
 
-.m-2xl {
-  margin: 200px;
-}
-
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -4052,11 +4048,6 @@ html {
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
-}
-
-.mx-2xl {
-  margin-left: 200px;
-  margin-right: 200px;
 }
 
 .mx-md {

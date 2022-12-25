@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
 import { useFetcher, useLoaderData } from "@remix-run/react";
@@ -45,15 +45,28 @@ export const loader = async ({ request }: LoaderArgs) => {
     });
   }
 
-  return json(Projects);
+  return json({ Projects, TotalProjects: ProjectsFileNames.length });
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data.TotalProjects) {
+    return {
+      title: "Missing Projects",
+      description: `There is no Projects. 😢`,
+    };
+  }
+  return {
+    title: `Projects ${data.TotalProjects}`,
+    description: "This is my Portfolio Projects",
+  };
 };
 
 const ProjectsSections = () => {
-  const FirstProjects = useLoaderData<typeof loader>();
+  const { Projects: FirstProjects, TotalProjects } =
+    useLoaderData<typeof loader>();
   const [Projects, setProjects] = useState(FirstProjects);
   const [Page, setPage] = useState(1);
-  const [LoadMore, setLoadMore] = useState(true);
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<typeof loader>();
 
   useEffect(() => {
     if (Page > 1) {
@@ -63,12 +76,11 @@ const ProjectsSections = () => {
 
   useEffect(() => {
     if (fetcher.data) {
-      if (fetcher.data.length > 0) {
-        setProjects((CurrentProjects) => [...CurrentProjects, ...fetcher.data]);
-      }
-      if (fetcher.data.length < 3) {
-        setLoadMore(false);
-      }
+      setProjects((CurrentProjects) => [
+        ...CurrentProjects,
+        // @ts-ignore
+        ...fetcher.data?.Projects,
+      ]);
     }
   }, [fetcher.data]);
 
@@ -87,7 +99,7 @@ const ProjectsSections = () => {
           </VisibilityAnimation>
         ))}
       </div>
-      {LoadMore ? (
+      {TotalProjects !== Projects.length ? (
         <Ring
           ringColor="#fff"
           OuterRingColor="#0f1729"

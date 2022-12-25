@@ -1,6 +1,6 @@
 import { getMDXComponent } from "mdx-bundler/client";
 import React, { useMemo } from "react";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
@@ -23,7 +23,7 @@ type ProjectType = {
 
 function TableDrawer({ children }: React.ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="drawer drawer-mobile drawer-end relative">
+    <div className="drawer-mobile drawer drawer-end relative">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <label
@@ -54,6 +54,20 @@ export const loader = async ({}: LoaderArgs) => {
   }
 };
 
+export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
+  if (!data) {
+    return {
+      title: "Missing Project",
+      description: `There is no Project with the name of ECommerce. 😢`,
+    };
+  }
+  const { frontmatter } = data;
+
+  return {
+    title: frontmatter.Title,
+    description: frontmatter.Description,
+  };
+};
 export default function Project() {
   const { frontmatter, code } = useLoaderData<typeof loader>();
   const Component = useMemo(() => getMDXComponent(code), [code]);

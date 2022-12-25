@@ -1,5 +1,13 @@
+import { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 
+export const meta: MetaFunction = () => {
+  return {
+    title: "FUN-ZONE",
+    description:
+      "Fun Zone have small games that you can play around, Currently it consists of Snake eat and Tic-tac-toe",
+  };
+};
 function index() {
   return (
     <div className="h-screen">

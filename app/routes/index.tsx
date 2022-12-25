@@ -1,13 +1,13 @@
 import { Title, Description, Subtitle } from "../../content/Hero.json";
 import { Github, Linkedin, Twitter } from "../../content/Socials.json";
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { Ring } from "@priyang/react-component-lib";
-import path from "path";
 import { GetProjectList, GetProject } from "~/Utils/Mdx.server";
 import { LoaderData } from "./Projects/$Slug";
+import path from "path";
 
 const HeroContainer = () => {
   return (
@@ -88,6 +88,13 @@ function TopProjectSection({
     </div>
   );
 }
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Priyang Patel",
+    description: "This is my Personal portfolio",
+  };
+};
 
 export const loader: LoaderFunction = async () => {
   const ProjectsFileName = GetProjectList();
