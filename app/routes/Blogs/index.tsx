@@ -27,35 +27,41 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       <h1 className="my-5 text-center font-['cursive'] text-7xl">Blogs</h1>
-      {Data.map((item) => (
-        <div className="md:mx-2xl">
-          <div className="card bg-base-100 shadow-xl lg:card-side">
-            <figure>
-              <img src={item.ImageURL} loading="lazy" alt="Album" />
-            </figure>
-            <div className="card-body border-2 border-solid border-primary-focus">
-              <h2 className="card-title">{item.title}</h2>
-              <p className="mt-5">{item.description}</p>
-              <p>
-                {item.date
-                  ? format(parseISO(item.date), "yyyy-MM-dd' 'HH:mm")
-                  : null}
-              </p>
-              <div className="card-actions justify-end">
-                <Ring
-                  ringColor="#fff"
-                  OuterRingColor="#0f1729"
-                  className="rounded-lg"
-                >
-                  <Link to={item.FileName}>
-                    <button className="btn-primary btn">Read the Blog</button>
-                  </Link>
-                </Ring>
+      <div className="my-5 flex flex-col gap-xl">
+        {Data.map((item) => (
+          <div className="md:mx-2xl">
+            <div className="card bg-base-100 shadow-xl lg:card-side">
+              <figure
+                style={{
+                  alignItems: "stretch",
+                }}
+              >
+                <img src={item.ImageURL} loading="lazy" alt="Album" />
+              </figure>
+              <div className="card-body border-2 border-solid border-primary-focus lg:w-2/3">
+                <h2 className="card-title">{item.title}</h2>
+                <p className="mt-5">{item.description}</p>
+                <p>
+                  {item.date
+                    ? format(parseISO(item.date), "yyyy-MM-dd' 'HH:mm")
+                    : null}
+                </p>
+                <div className="card-actions justify-end">
+                  <Ring
+                    ringColor="#fff"
+                    OuterRingColor="#0f1729"
+                    className="rounded-lg"
+                  >
+                    <Link to={item.FileName}>
+                      <button className="btn-primary btn">Read the Blog</button>
+                    </Link>
+                  </Ring>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

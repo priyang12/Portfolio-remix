@@ -4784,6 +4784,10 @@ html {
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-2\/3 {
+    width: 66.666667%;
+  }
+
   .lg\:prose-xl {
     font-size: 1.25rem;
     line-height: 1.8;

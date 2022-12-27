@@ -7,8 +7,39 @@ Technologies:
 ProjectLink: https://tales-of-numbers-git-master-priyang12.vercel.app
 GithubLink: https://github.com/priyang12/Numbers-are-Fun
 Image: https://ik.imagekit.io/5aalo5l7bu7/Tales_O1dWSddbd.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660117461598
+Video: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/NumberFun_gk79SVdki.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1672083871657
 ---
 
-## display
+# Numbers are Fun Web App / PWA
 
-we can set values like 'minimal-ui' , "display": "standalone" or "brower" to display navigation panels and other things.
+[Link To WebApp](https://funnumbers.web-club.co/ "WebApp Link")
+
+## It is App where you can get some small information about the perticular number.
+
+### Tech-Stack
+
+## frontend
+
+- React / js
+- React-Router-dom
+- CSS-modules
+
+### Proxy-server Because Cross-Origin Error
+
+## backend
+
+- node.js
+- express
+- cros /request
+
+### Features
+
+- Get Fact about Number
+- Get Fact about Year
+- Get Traiva about Number
+- Random number/trivia/year
+- Multiple number/trivis/year
+- Ramnurjun's Number and others
+- Offline Mode
+- PWA
+- Responsive
