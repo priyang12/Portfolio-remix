@@ -11,3 +11,4 @@ sounds
 LRUCACHE.server.ts
 
 .vscode
+entry.worker.js
