@@ -12,3 +12,4 @@ LRUCACHE.server.ts
 
 .vscode
 entry.worker.js
+app/styles/app.css
