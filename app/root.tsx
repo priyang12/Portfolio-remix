@@ -8,13 +8,14 @@ import {
   ScrollRestoration,
   useLocation,
   useMatches,
+  useTransition,
 } from "@remix-run/react";
 import Footer from "./Component/Footer";
 import Navbar from "./Component/Navbar";
 import styles from "./styles/app.css";
 import LibStyles from "@priyang/react-component-lib/dist/index.css";
 import CustomErrorBoundary from "./Component/ErrorBoundary";
-import { ReactNode, useEffect } from "react";
+import * as React from "react";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -29,12 +30,77 @@ export function links() {
   ];
 }
 
+// we don't want to show the loading indicator on page load
+let firstRender = true;
+
+const LOADER_WORDS = [
+  "loading",
+  "checking cdn",
+  "checking cache",
+  "fetching from db",
+  "compiling mdx",
+  "updating cache",
+  "transfer",
+];
+
+const ACTION_WORDS = [
+  "packaging",
+  "zapping",
+  "validating",
+  "processing",
+  "calculating",
+  "computing",
+  "computering",
+];
+
+function PageLoadingMessage() {
+  const transition = useTransition();
+  const [words, setWords] = React.useState<Array<string>>([]);
+  const [pendingPath, setPendingPath] = React.useState("");
+
+  React.useEffect(() => {
+    if (firstRender) return;
+    if (transition.state === "idle") return;
+    if (transition.state === "loading") setWords(LOADER_WORDS);
+    if (transition.state === "submitting") setWords(ACTION_WORDS);
+
+    const interval = setInterval(() => {
+      setWords(([first, ...rest]) => [...rest, first] as Array<string>);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [pendingPath, transition.state]);
+
+  React.useEffect(() => {
+    if (firstRender) return;
+    if (transition.state === "idle") return;
+    setPendingPath(transition.location.pathname);
+  }, [transition]);
+
+  React.useEffect(() => {
+    firstRender = false;
+  }, []);
+
+  const action = words[0];
+
+  return (
+    <>
+      {transition.state !== "idle" ? (
+        <div className="glass-container fixed bottom-5 right-5 z-30 m-auto flex w-fit flex-col  items-center justify-center gap-sm rounded-3xl p-sm">
+          <h1>{action}</h1>
+          <progress className="progress w-56"></progress>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 let isMount = true;
 export default function App() {
   let location = useLocation();
   let matches = useMatches();
 
-  useEffect(() => {
+  React.useEffect(() => {
     let mounted = isMount;
     isMount = false;
     if ("serviceWorker" in navigator) {
@@ -66,7 +132,7 @@ export default function App() {
         };
       }
     }
-  }, [location]);
+  }, [location, matches]);
 
   return (
     <html lang="en" data-theme="night" className="scroll-smooth">
@@ -156,6 +222,7 @@ export default function App() {
         }}
       >
         <Navbar />
+        <PageLoadingMessage />
         <Outlet />
         <ScrollRestoration />
         <Scripts />

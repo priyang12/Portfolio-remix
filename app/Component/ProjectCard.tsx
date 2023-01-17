@@ -38,7 +38,7 @@ const ProjectCard = ({
               <a
                 href={ProjectLink}
                 target="_blank"
-                className="btn btn-primary hover:text-white"
+                className="btn-primary btn hover:text-white"
                 rel="noreferrer"
               >
                 <FiExternalLink />
@@ -46,13 +46,13 @@ const ProjectCard = ({
               <a
                 href={GithubLink}
                 target="_blank"
-                className="btn btn-secondary  hover:text-white"
+                className="btn-secondary btn  hover:text-white"
                 rel="noreferrer"
               >
                 <FiGithub />
               </a>
               <Link
-                className="btn btn-ghost ml-sm border-secondary"
+                className="btn-ghost btn ml-sm border-secondary"
                 to={`/projects/${Filename}`}
               >
                 More
