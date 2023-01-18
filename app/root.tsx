@@ -1,4 +1,5 @@
-import type { ErrorBoundaryComponent, MetaFunction } from "@remix-run/node";
+import * as React from "react";
+import { ErrorBoundaryComponent, json, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -6,6 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useLocation,
   useMatches,
   useTransition,
@@ -15,7 +17,7 @@ import Navbar from "./Component/Navbar";
 import styles from "./styles/app.css";
 import LibStyles from "@priyang/react-component-lib/dist/index.css";
 import CustomErrorBoundary from "./Component/ErrorBoundary";
-import * as React from "react";
+import * as gtag from "./Utils/gtags.client";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -95,10 +97,23 @@ function PageLoadingMessage() {
   );
 }
 
+export const loader = async () => {
+  return json({ gaTrackingId: process.env.GA_TRACKING_ID });
+};
+
 let isMount = true;
+
 export default function App() {
   let location = useLocation();
   let matches = useMatches();
+
+  const { gaTrackingId } = useLoaderData<typeof loader>();
+
+  React.useEffect(() => {
+    if (gaTrackingId?.length) {
+      gtag.pageview(location.pathname, gaTrackingId);
+    }
+  }, [location, gaTrackingId]);
 
   React.useEffect(() => {
     let mounted = isMount;
@@ -221,6 +236,28 @@ export default function App() {
           minHeight: "100vh",
         }}
       >
+        {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
         <Navbar />
         <PageLoadingMessage />
         <Outlet />
