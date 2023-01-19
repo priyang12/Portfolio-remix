@@ -27,13 +27,14 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       <h1 className="my-5 text-center font-['cursive'] text-7xl">Blogs</h1>
-      <div className="my-5 flex flex-col gap-xl">
+      <div className="my-xl flex flex-col gap-xl">
         {Data.map((item) => (
           <div className="md:mx-2xl" key={item.title}>
             <div className="card bg-base-100 shadow-xl lg:card-side">
               <figure
                 style={{
                   alignItems: "stretch",
+                  width: "90%",
                 }}
               >
                 <img src={item.ImageURL} loading="lazy" alt="Album" />

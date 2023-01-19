@@ -6,6 +6,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { redirect } from "react-router";
 import { GetBlog } from "~/Utils/Mdx.server";
 import readTime from "~/Utils/readTime";
+import Comment from "~/Component/Comment";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { Slug } = params;
@@ -38,7 +39,7 @@ export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
 export default function Blogs() {
   const { frontmatter, code } = useLoaderData<typeof loader>();
 
-  const TotalTime = React.useCallback(() => readTime(code), []);
+  const TotalTime = React.useCallback(() => readTime(code), [code]);
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
@@ -51,13 +52,18 @@ export default function Blogs() {
           className="rounded-xl"
         />
       </figure>
-      <h1 className="mx-2xl my-sm text-2xl">
-        Total Read Time : {TotalTime()} Mins
-      </h1>
+      <div className="my-sm mx-md flex flex-col gap-5">
+        <h1 className="text-6xl font-bold text-primary">{frontmatter.title}</h1>
+        <h2 className="text-2xl">
+          Total Read Time :{" "}
+          <span className="font-bold text-secondary">{TotalTime()} Mins</span>
+        </h2>
+      </div>
 
-      <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:rounded-3xl md:p-0 lg:prose-xl">
+      <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:mx-auto prose-img:rounded-3xl md:p-0 lg:prose-xl">
         <Component />
       </article>
+      <Comment />
     </div>
   );
 }
