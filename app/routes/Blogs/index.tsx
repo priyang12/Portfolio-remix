@@ -1,9 +1,11 @@
 import { Ring } from "@priyang/react-component-lib";
-import { json, LoaderArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { format, parseISO } from "date-fns";
 import { GetAllBlogPostNames, GetAllBlogs } from "~/Utils/Mdx.server";
 
+// eslint-disable-next-line no-empty-pattern
 export const loader = async ({}: LoaderArgs) => {
   const PostsFileName = await GetAllBlogPostNames();
   const Data = await GetAllBlogs<MdxPage["frontmatter"]>(PostsFileName);
@@ -34,8 +36,8 @@ export default function Index() {
               <figure
                 style={{
                   alignItems: "stretch",
-                  width: "90%",
                 }}
+                className="lg:w-[90%]"
               >
                 <img src={item.ImageURL} loading="lazy" alt="Album" />
               </figure>

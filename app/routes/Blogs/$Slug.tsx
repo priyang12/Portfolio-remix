@@ -6,7 +6,8 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { redirect } from "react-router";
 import { GetBlog } from "~/Utils/Mdx.server";
 import readTime from "~/Utils/readTime";
-import Comment from "~/Component/Comment";
+
+const Comment = React.lazy(() => import("~/Component/Comment"));
 
 export const loader = async ({ params }: LoaderArgs) => {
   const { Slug } = params;
@@ -37,10 +38,14 @@ export const meta: MetaFunction<typeof loader> = ({ params, data }) => {
 };
 
 export default function Blogs() {
+  const [CommentLoad, setCommentLoad] = React.useState(false);
   const { frontmatter, code } = useLoaderData<typeof loader>();
-
   const TotalTime = React.useCallback(() => readTime(code), [code]);
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
+  React.useEffect(() => {
+    setCommentLoad(true);
+  }, []);
 
   return (
     <div className="my-xl md:mx-2xl">
@@ -63,7 +68,17 @@ export default function Blogs() {
       <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:mx-auto prose-img:rounded-3xl md:p-0 lg:prose-xl">
         <Component />
       </article>
-      <Comment />
+      {CommentLoad ? (
+        <React.Suspense
+          fallback={
+            <>
+              <div>Loading</div>
+            </>
+          }
+        >
+          <Comment />
+        </React.Suspense>
+      ) : null}
     </div>
   );
 }
