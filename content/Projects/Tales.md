@@ -10,8 +10,6 @@ Image: https://ik.imagekit.io/5aalo5l7bu7/Tales_O1dWSddbd.png?ik-sdk-version=jav
 Video: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/NumberFun_gk79SVdki.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1672083871657
 ---
 
-# Numbers are Fun Web App / PWA
-
 [Link To WebApp](https://funnumbers.web-club.co/ "WebApp Link")
 
 ## It is App where you can get some small information about the perticular number.

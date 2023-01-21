@@ -9,8 +9,6 @@ Image: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/Screenshot_2022-12-27_at_8.3
 Video: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/React-lib_W7KdoRCay.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1672153476205
 ---
 
-# React Component lib
-
 As we build out scalable applications in React, we often face challenges in maintaining the growing complexity of component structures. that why the lib follows Atmoic design system.
 
 The Atomic Design Pattern is a methodology for creating user interfaces (UI) that is based on the concept of "atoms," which are the smallest, indivisible elements of a UI. These atoms can then be combined to form molecules, which are small groups of atoms that function together as a unit. From there, molecules can be combined to form organisms, which are larger groups of molecules that function together to perform a specific task. Finally, organisms can be combined to form templates, which are complete UI layouts that can be used to build a user interface.

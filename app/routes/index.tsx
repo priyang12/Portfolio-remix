@@ -6,7 +6,7 @@ import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { Ring } from "@priyang/react-component-lib";
 import { GetProjectList, GetProject } from "~/Utils/Mdx.server";
-import { LoaderData } from "./Projects/$Slug";
+import type { LoaderData } from "./Projects/$Slug";
 import path from "path";
 
 const HeroContainer = () => {
@@ -80,7 +80,7 @@ function TopProjectSection({
             prefetch="intent"
           >
             <li className="my-sm rounded-lg ring-2 ring-purple-500 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900">
-              <div className="flex flex-col gap-md md:flex-row">
+              <div className="flex min-h-[200px] flex-col gap-md md:flex-row">
                 <h2 className="text-2xl md:w-1/4">{project.Title}</h2>
                 <div className="divider lg:divider-horizontal"></div>
                 <p className="w-3/4 text-xl">{project.Description}</p>
