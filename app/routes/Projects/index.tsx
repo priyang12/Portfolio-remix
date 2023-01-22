@@ -3,11 +3,12 @@ import path from "path";
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
-import { useFetcher, useLoaderData } from "@remix-run/react";
+import { useFetcher, useLoaderData, useSearchParams } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import VisibilityAnimation from "~/Component/VisibilitySensor";
 import ProjectCard from "~/Component/ProjectCard";
 import { Ring } from "@priyang/react-component-lib";
+import { FilterProjects } from "~/Utils/Filter.server";
 
 export type ProjectProps = {
   Title: string;
@@ -30,22 +31,27 @@ export const loader = async ({ request }: LoaderArgs) => {
   const Projects = [] as LoaderType;
   const ProjectsFileNames = GetProjectList();
 
-  const PageProjects = ProjectsFileNames.slice(
+  for (const filename in ProjectsFileNames) {
+    const { frontmatter } = await GetProject<ProjectProps>(
+      ProjectsFileNames[filename]
+    );
+    Projects.push({
+      Data: frontmatter,
+      filename: path.parse(ProjectsFileNames[filename]).name,
+    });
+  }
+
+  const FilterProjectsList = FilterProjects(Projects, "");
+
+  const PageProjects = FilterProjectsList.slice(
     PerPage * (Page - 1),
     Page * PerPage
   );
 
-  for (const filename in PageProjects) {
-    const { frontmatter } = await GetProject<ProjectProps>(
-      PageProjects[filename]
-    );
-    Projects.push({
-      Data: frontmatter,
-      filename: path.parse(PageProjects[filename]).name,
-    });
-  }
-
-  return json({ Projects, TotalProjects: ProjectsFileNames.length });
+  return json({
+    Projects: PageProjects,
+    TotalProjects: FilterProjectsList.length,
+  });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -64,6 +70,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 const ProjectsSections = () => {
   const { Projects: FirstProjects, TotalProjects } =
     useLoaderData<typeof loader>();
+  const [Search, useSearch] = useSearchParams();
   const [Projects, setProjects] = useState(FirstProjects);
   const [Page, setPage] = useState(1);
   const fetcher = useFetcher<typeof loader>();
@@ -73,6 +80,8 @@ const ProjectsSections = () => {
       fetcher.load(`/Projects?index&page=${Page}`);
     }
   }, [Page]);
+
+  console.log(fetcher.state);
 
   useEffect(() => {
     if (fetcher.data) {
