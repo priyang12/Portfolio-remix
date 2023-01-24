@@ -1,5 +1,5 @@
-import { createRequestHandler } from "@remix-run/netlify";
 import * as build from "@remix-run/dev/server-build";
+import { createRequestHandler } from "@remix-run/netlify";
 
 /*
  * Returns a context object with at most 3 keys:
@@ -9,6 +9,7 @@ import * as build from "@remix-run/dev/server-build";
  *  - `netlifyGraphSignature`: a signature for subscription events. Will be
  *    present if a secret is set.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getLoadContext(event, context) {
   let rawAuthorizationString;
   let netlifyGraphToken;

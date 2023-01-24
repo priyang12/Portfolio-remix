@@ -1,5 +1,7 @@
-import { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
+
 import { VisibleElement } from "~/Component/VisibilitySensor";
+
 import SignSvgIcon from "../Component/Sign";
 
 export const meta: MetaFunction = () => {
@@ -16,7 +18,7 @@ const AboutMe = () => {
       <div className="flex flex-col md:mx-auto md:w-3/4">
         <h1 className="mb-5 text-5xl text-primary">About Me</h1>
         <p className="mt-sm text-3xl leading-10 text-secondary">
-          I'm a software engineer with a passion for building products that
+          I&#39;m a software engineer with a passion for building products that
           people love.
         </p>
         <p className="mt-sm text-3xl leading-10 text-secondary">

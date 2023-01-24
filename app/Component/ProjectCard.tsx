@@ -1,7 +1,7 @@
-import { FiExternalLink, FiGithub } from "react-icons/fi";
 import { Link } from "@remix-run/react";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
+
 import type { ProjectProps } from "../routes/Projects/index";
-import { Ring } from "@priyang/react-component-lib";
 
 const ProjectCard = ({
   Project,

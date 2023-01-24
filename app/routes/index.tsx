@@ -1,13 +1,15 @@
-import { Title, Description, Subtitle } from "../../content/Hero.json";
-import { Github, Linkedin, Twitter } from "../../content/Socials.json";
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { Ring } from "@priyang/react-component-lib";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { Ring } from "@priyang/react-component-lib";
-import { GetProjectList, GetProject } from "~/Utils/Mdx.server";
-import type { LoaderData } from "./Projects/$Slug";
 import path from "path";
+import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+
+import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
+
+import { Description, Subtitle, Title } from "../../content/Hero.json";
+import { Github, Linkedin, Twitter } from "../../content/Socials.json";
+import type { LoaderData } from "./Projects/$Slug";
 
 const HeroContainer = () => {
   return (

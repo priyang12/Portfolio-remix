@@ -1,4 +1,4 @@
-import * as React from "react";
+import LibStyles from "@priyang/react-component-lib/dist/index.css";
 import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
@@ -13,11 +13,12 @@ import {
   useMatches,
   useTransition,
 } from "@remix-run/react";
+import * as React from "react";
+
+import CustomErrorBoundary from "./Component/ErrorBoundary";
 import Footer from "./Component/Footer";
 import Navbar from "./Component/Navbar";
 import styles from "./styles/app.css";
-import LibStyles from "@priyang/react-component-lib/dist/index.css";
-import CustomErrorBoundary from "./Component/ErrorBoundary";
 import * as gtag from "./Utils/gtags.client";
 
 export const meta: MetaFunction = () => ({

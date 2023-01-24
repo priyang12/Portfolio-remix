@@ -1,11 +1,12 @@
-import { getMDXComponent } from "mdx-bundler/client";
-import { useMemo } from "react";
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
-import { GetProject } from "~/Utils/Mdx.server";
+import { useLoaderData } from "@remix-run/react";
+import { getMDXComponent } from "mdx-bundler/client";
+import { useMemo } from "react";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
+
+import { GetProject } from "~/Utils/Mdx.server";
 
 export type LoaderData = {
   Title: string;

@@ -1,14 +1,16 @@
-import { v4 as uuidv4 } from "uuid";
-import path from "path";
+import { Ring } from "@priyang/react-component-lib";
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
+import type { Fetcher } from "@remix-run/react";
 import { useFetcher, useLoaderData, useSearchParams } from "@remix-run/react";
+import path from "path";
 import { useEffect, useState } from "react";
-import VisibilityAnimation from "~/Component/VisibilitySensor";
+import { v4 as uuidv4 } from "uuid";
+
 import ProjectCard from "~/Component/ProjectCard";
-import { Ring } from "@priyang/react-component-lib";
+import VisibilityAnimation from "~/Component/VisibilitySensor";
 import { FilterProjects } from "~/Utils/Filter.server";
+import { GetProject, GetProjectList } from "~/Utils/Mdx.server";
 
 export type ProjectProps = {
   Title: string;
@@ -100,6 +102,11 @@ const ProjectsSections = () => {
   return (
     <section className="min-h-screen font-Roboto sm:px-xl" id="Projects">
       <h1 className="my-5 text-center font-VT323 text-7xl">Projects</h1>
+      <input
+        type="text"
+        placeholder="Type here"
+        className="input-bordered input input-lg w-full max-w-xs"
+      />
 
       <div className="mb-md flex flex-col gap-5">
         {Projects?.map((item) => (
@@ -109,19 +116,29 @@ const ProjectsSections = () => {
         ))}
       </div>
       {TotalProjects !== Projects.length ? (
-        <Ring
-          ringColor="#fff"
-          OuterRingColor="#0f1729"
-          onClick={FetchMore}
-          className="btn-secondary btn my-md text-2xl sm:btn-block"
-        >
-          <button>
-            {fetcher.state === "loading" ? "Loading" : "Load More"}
-          </button>
-        </Ring>
+        <LoadMoreButton FetchMore={FetchMore} fetcher={fetcher} />
       ) : null}
     </section>
   );
 };
 
 export default ProjectsSections;
+
+function LoadMoreButton({
+  fetcher,
+  FetchMore,
+}: {
+  fetcher: Fetcher;
+  FetchMore: any;
+}) {
+  return (
+    <Ring
+      ringColor="#fff"
+      OuterRingColor="#0f1729"
+      onClick={FetchMore}
+      className="btn-secondary btn my-md text-2xl sm:btn-block"
+    >
+      <button>{fetcher.state === "loading" ? "Loading" : "Load More"}</button>
+    </Ring>
+  );
+}

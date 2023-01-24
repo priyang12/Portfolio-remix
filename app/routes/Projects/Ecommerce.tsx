@@ -1,11 +1,13 @@
-import { getMDXComponent } from "mdx-bundler/client";
-import React, { useMemo } from "react";
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
-import { GetProject } from "~/Utils/Mdx.server";
+import { useLoaderData } from "@remix-run/react";
+import { getMDXComponent } from "mdx-bundler/client";
+import React, { useMemo } from "react";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
+
+import { GetProject } from "~/Utils/Mdx.server";
+
 import TableContent from "../../Component/TableContent";
 
 type ProjectType = {
@@ -23,7 +25,7 @@ type ProjectType = {
 
 function TableDrawer({ children }: React.ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="drawer-mobile drawer drawer-end relative">
+    <div className="drawer drawer-mobile drawer-end relative">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <label
@@ -42,7 +44,7 @@ function TableDrawer({ children }: React.ComponentPropsWithoutRef<"div">) {
   );
 }
 
-export const loader = async ({}: LoaderArgs) => {
+export const loader = async (_: LoaderArgs) => {
   try {
     const { code, frontmatter } = await GetProject<ProjectType>("Ecommerce.md");
     return json(

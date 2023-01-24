@@ -1,6 +1,6 @@
-import VisibilitySensor from "react-visibility-sensor";
-import { Spring, animated } from "@react-spring/web";
+import { animated,Spring } from "@react-spring/web";
 import React, { useState } from "react";
+import VisibilitySensor from "react-visibility-sensor";
 
 export function VisibleElement({
   children,

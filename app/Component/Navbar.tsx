@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
-import { useScroll } from "~/Hooks/useScroll";
 import { clsx } from "clsx";
+
+import { useScroll } from "~/Hooks/useScroll";
 
 function Navbar() {
   const { scrollDir } = useScroll();

@@ -1,8 +1,9 @@
+import fs from "fs";
 import { bundleMDX } from "mdx-bundler";
 import path from "path";
-import fs from "fs";
-import { cache } from "./Cache.server";
 import rehypeSlug from "rehype-slug";
+
+import { cache } from "./Cache.server";
 
 export { bundleMDX } from "mdx-bundler";
 

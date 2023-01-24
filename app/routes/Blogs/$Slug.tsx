@@ -1,9 +1,10 @@
-import * as React from "react";
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
+import * as React from "react";
 import { redirect } from "react-router";
+
 import { GetBlog } from "~/Utils/Mdx.server";
 import readTime from "~/Utils/readTime";
 
