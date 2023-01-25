@@ -1,5 +1,5 @@
 ---
-TechName: FULL-STACK-MonoRepo
+TechName: FULL-STACK MonoRepo
 Title: ShopIT E-commerce & Admin
 Description: It's a full-stack web application that allows users to create an account, log in, and create an order. The application also allows users to view their order history, and view their cart. The application is built with Node.js, Express, MongoDB, React, Context API, and Styled Component. The application is deployed on Vercel.
 Technologies: [Node.js, Express, MongoDB, React, Styled Component]

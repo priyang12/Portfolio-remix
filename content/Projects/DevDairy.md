@@ -1,5 +1,5 @@
 ---
-TechName: FULL-STACK-MonoRepo
+TechName: FULL-STACK MonoRepo
 Title: Dev Dairy
 Description: It's a Full-stack web application. The user can create project and create posts and Worksessions to keep track of their projects. the user can also share the progress of the work where they have done with a link to show to other people. there are other feature that can be explored.
 Technologies:
