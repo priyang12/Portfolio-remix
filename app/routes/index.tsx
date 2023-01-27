@@ -112,7 +112,8 @@ export const loader: LoaderFunction = async () => {
         ProjectsFileName[project]
       );
       data.push({
-        ...ProjectData.frontmatter,
+        Title: ProjectData.frontmatter.Title,
+        Description: ProjectData.frontmatter.Description,
         FileName: path.parse(ProjectsFileName[project]).name,
       });
     }
