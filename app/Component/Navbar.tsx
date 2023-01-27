@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 import { useScroll } from "~/Hooks/useScroll";
 
 function Navbar() {
-  const { scrollDir } = useScroll();
+  const { scrollDir } = useScroll(50);
   return (
     <div
       className={clsx(
