@@ -5,7 +5,7 @@ Description: It's a React Component Lib that follows Atomic Design Pattern to bu
 Technologies: [React, Tsup, Storybook]
 ProjectLink: https://willowy-semifreddo-521b84.netlify.app/
 GithubLink: https://github.com/priyang12/react-component-lib
-Image: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/Screenshot_2022-12-27_at_8.37.00_PM_mVstQ_Z9j.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672153660184
+Image: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/ReactComponentLib.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675114083291
 Video: https://ik.imagekit.io/5aalo5l7bu7/Portfolio/React-lib_W7KdoRCay.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1672153476205
 ---
 

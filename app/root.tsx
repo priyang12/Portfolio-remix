@@ -231,6 +231,28 @@ export default function App() {
           href="https://fonts.googleapis.com/css2?family=Roboto&family=VT323&display=swap"
           rel="stylesheet"
         ></link>
+
+        <title>Welcome to WebHub</title>
+        <meta name="title" content="Welcome to WebHub" />
+        <meta name="description" content="This is my Personal portfolio." />
+        <link rel="canonical" href="https://www.web-club.co" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.web-club.co" />
+        <meta property="og:title" content="Welcome to WebHub" />
+        <meta
+          property="og:description"
+          content="This is my Personal portfolio."
+        />
+        <meta property="og:image" content="" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.web-club.co" />
+        <meta property="twitter:title" content="Welcome to WebHub" />
+        <meta
+          property="twitter:description"
+          content="This is my Personal portfolio."
+        />
+        <meta property="twitter:image" content=""></meta>
       </head>
 
       <body

@@ -24,7 +24,7 @@ const ProjectCard = ({
             <figure className="full w-full align-top">
               <img
                 src={Image}
-                alt="Album"
+                alt={Title + " Image"}
                 className="h-full w-full rounded-md p-5"
               />
             </figure>
@@ -38,7 +38,8 @@ const ProjectCard = ({
               <a
                 href={ProjectLink}
                 target="_blank"
-                className="btn-primary btn hover:text-white"
+                aria-label={`${Title} Project Link`}
+                className="btn btn-primary hover:text-white"
                 rel="noreferrer"
               >
                 <FiExternalLink />
@@ -46,16 +47,17 @@ const ProjectCard = ({
               <a
                 href={GithubLink}
                 target="_blank"
-                className="btn-secondary btn  hover:text-white"
+                aria-label={`${Title} Github Link`}
+                className="btn btn-secondary  hover:text-white"
                 rel="noreferrer"
               >
                 <FiGithub />
               </a>
               <Link
-                className="btn-ghost btn ml-sm border-secondary"
+                className="btn btn-ghost ml-sm truncate border-secondary"
                 to={`/projects/${Filename}`}
               >
-                More
+                Learn more about
               </Link>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 
+import { DomainName } from "~/DomainName";
+
 export const loader: LoaderFunction = async () => {
   const content = `
   <urlset
@@ -8,97 +10,97 @@ export const loader: LoaderFunction = async () => {
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
               http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://www.web-club.co/</loc>
+    <loc>${DomainName}/</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Projects</loc>
+    <loc>${DomainName}/Projects</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Blogs</loc>
+    <loc>${DomainName}/Blogs</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/FunZone</loc>
+    <loc>${DomainName}/FunZone</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/AboutMe</loc>
+    <loc>${DomainName}/AboutMe</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/projects</loc>
+    <loc>${DomainName}/projects</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Projects/DevDairy</loc>
+    <loc>${DomainName}/Projects/DevDairy</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Projects/Ecommerce</loc>
+    <loc>${DomainName}/Projects/Ecommerce</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Projects/ReactLib</loc>
+    <loc>${DomainName}/Projects/ReactLib</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/projects/DevDairy</loc>
+    <loc>${DomainName}/projects/DevDairy</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/projects/Ecommerce</loc>
+    <loc>${DomainName}/projects/Ecommerce</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/projects/ReactLib</loc>
+    <loc>${DomainName}/projects/ReactLib</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Blogs/Background-and-gradient-blog</loc>
+    <loc>${DomainName}/Blogs/Background-and-gradient-blog</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Blogs/Background</loc>
+    <loc>${DomainName}/Blogs/Background</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/FunZone/TicTacToe</loc>
+    <loc>${DomainName}/FunZone/TicTacToe</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/FunZone/SnakeGame</loc>
+    <loc>${DomainName}/FunZone/SnakeGame</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Funzone</loc>
+    <loc>${DomainName}/Funzone</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.51</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Funzone/TicTacToe</loc>
+    <loc>${DomainName}/Funzone/TicTacToe</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.41</priority>
   </url>
   <url>
-    <loc>https://www.web-club.co/Funzone/SnakeGame</loc>
+    <loc>${DomainName}/Funzone/SnakeGame</loc>
     <lastmod>2023-01-29T13:29:52+00:00</lastmod>
     <priority>0.41</priority>
   </url>

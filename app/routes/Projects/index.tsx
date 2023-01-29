@@ -122,7 +122,6 @@ const ProjectsSections = () => {
     useSearch(URL, {
       replace: true,
     });
-    window.location.reload();
   };
 
   const ClearAll: React.ComponentPropsWithoutRef<"form">["onReset"] = (e) => {
@@ -132,7 +131,6 @@ const ProjectsSections = () => {
     useSearch(Search, {
       replace: true,
     });
-    window.location.reload();
   };
 
   const ClickTag = (TagName: string) => {
@@ -147,7 +145,6 @@ const ProjectsSections = () => {
     useSearch(URL, {
       replace: true,
     });
-    window.location.reload();
   };
 
   const RemoveTag = (TagName: string) => {
@@ -159,7 +156,6 @@ const ProjectsSections = () => {
     useSearch(Search, {
       replace: true,
     });
-    window.location.reload();
   };
   return (
     <section className="min-h-screen font-Roboto sm:px-xl" id="Projects">
@@ -221,7 +217,7 @@ function LoadMoreButton({
       ringColor="#fff"
       OuterRingColor="#0f1729"
       onClick={FetchMore}
-      className="btn-secondary btn my-md text-2xl sm:btn-block"
+      className="btn btn-secondary my-md text-2xl sm:btn-block"
     >
       <button>{fetcher.state === "loading" ? "Loading" : "Load More"}</button>
     </Ring>
