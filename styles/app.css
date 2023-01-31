@@ -12,6 +12,10 @@
   stroke-dasharray: 1993;
   stroke-dashoffset: 1993;
 }
+.mask {
+  fill: none;
+  stroke: #fff;
+}
 
 .cut-text {
   display: -webkit-box;

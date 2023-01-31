@@ -1,3 +1,5 @@
+import { DomainName } from "~/DomainName";
+
 export const loader = () => {
   const robotText = `
         User-agent: Googlebot
@@ -6,7 +8,7 @@ export const loader = () => {
         User-agent: *
         Allow: /
     
-        Sitemap: https://www.web-club.co/resources/sitemap.xml
+        Sitemap: ${DomainName}/resources/sitemap.xml
         `;
 
   return new Response(robotText, {
