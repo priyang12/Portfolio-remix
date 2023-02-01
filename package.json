@@ -2,8 +2,9 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:css && npm run build:worker && remix build",
+    "build": "npm run build:css && npm run build:worker && npm run partytown && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "partytown": "partytown copylib public/~partytown",
     "build:worker": "esbuild ./app/entry.worker.ts --outfile=./public/entry.worker.js --minify --bundle --format=esm --define:process.env.NODE_ENV='\"production\"'",
     "dev:worker": "esbuild ./app/entry.worker.ts --outfile=./public/entry.worker.js --bundle --format=esm --define:process.env.NODE_ENV='\"development\"' --watch",
     "dev:debug": "concurrently \"npm run dev:css\" \"npm run dev:worker\" \"remix --debug dev\"",
