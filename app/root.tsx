@@ -1,3 +1,4 @@
+import { Partytown } from "@builder.io/partytown/react";
 import LibStyles from "@priyang/react-component-lib/dist/index.css";
 import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
@@ -159,6 +160,7 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#c34138" />
+        <Partytown debug={true} forward={["dataLayer.push"]} />
         <Meta />
         <link rel="manifest" href="/resources/manifest.json" />
         <link
@@ -265,10 +267,12 @@ export default function App() {
         {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
           <>
             <script
+              type="text/partytown"
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
             />
             <script
+              type="text/partytown"
               async
               id="gtag-init"
               dangerouslySetInnerHTML={{
@@ -282,6 +286,7 @@ export default function App() {
               `,
               }}
             />
+            <script />
           </>
         )}
         <Navbar />
