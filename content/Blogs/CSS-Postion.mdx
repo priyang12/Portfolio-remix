@@ -1,0 +1,262 @@
+---
+title: CSS Postions
+date: 2023-02-16
+description: It's a Blog about how CSS Postions Works.
+categories:
+  - CSS
+meta:
+  keywords:
+    - CSS
+    - Postions
+ImageURL: https://source.unsplash.com/hIJ5QOB_GeA
+---
+
+## Position and Stacking
+
+Css position is a property used for setting a element to a perticular location on the page based on the value we set. You can follow along [Codepen](https://codepen.io/Wolfie12/pen/dymExKo).
+
+There 5 values that we can set apart from global values
+
+```scss
+position: static;
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+```
+
+with that for position and stacking we have some some proerties. `top` , `bottom` , `left` , `right` , `z-index`.
+
+## Static
+
+Static is the Value that is default for postion on all the elements. the postions properties does not work on static position.
+
+## Relative
+
+relative will align the element normally flow of the document and than as we put value of `top` and other properties. let's look into [Codepen][https://codepen.io/wolfie12/pen/dymexko]. as you look if you can set values either `top` or `bottom` and `left` or `right` which ever will put first will be applied. now what if there are two elements are overlaping one another. in order to solve which element should have priproty we will use `z-index` we can set either in positive or negitve value for stacking elements.
+
+```scss
+.relative {
+  background: green;
+  border: 2px solid red;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 30px;
+  right: -200px; // <-does not work if left applied
+  bottom: 20px; // <-does not work if top applied
+
+  // stacking
+  top: -20px;
+  z-index: -1;
+  // z-index: 0;
+}
+```
+
+## Position and Stacking
+
+Css position is a property used for setting a element to a perticular location on the page based on the value we set. You can follow along [Codepen](https://codepen.io/Wolfie12/pen/dymExKo).
+
+There 5 values that we can set apart from global values
+
+```scss
+position: static;
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+```
+
+with that for position and stacking we have some some proerties. `top` , `bottom` , `left` , `right` , `z-index`.
+
+## Static
+
+Static is the Value that is default for postion on all the elements. the postions properties does not work on static position.
+
+## Relative
+
+relative will align the element normally flow of the document and than as we put value of `top` and other properties. let's look into [Codepen][https://codepen.io/wolfie12/pen/dymexko]. as you look if you can set values either `top` or `bottom` and `left` or `right` which ever will put first will be applied. now what if there are two elements are overlaping one another. in order to solve which element should have priproty we will use `z-index` we can set either in positive or negitve value for stacking elements.
+
+```scss
+.relative {
+  background: green;
+  border: 2px solid red;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 30px;
+  right: -200px; // <-does not work if left applied
+  bottom: 20px; // <-does not work if top applied
+
+  // stacking
+  top: -20px;
+  z-index: -1;
+  // z-index: 0;
+}
+```
+
+![abouslte](https://ik.imagekit.io/5aalo5l7bu7/DevBlog/Position_Z1-8NNgW9S.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676486551402)
+
+Note : `z-index` also does not work on static which is default so you if we put negative value on static it will not work.
+
+## absolute
+
+absolute will remove from normal flow of alignment and it will placed in the body based on the nearest parent who have relative positioned or if not found it placed based on initial containing block elements and `top` and other properites.
+
+Another thing it is diffrent from relative position is that we can use all the properties `top` , `bottom` , `left` , `right` all will be applied.
+
+```scss
+.relative {
+  background: green;
+  border: 2px solid red;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  right: -100px; // <-does not work if left applied
+  bottom: 20px; // <-does not work if top applied
+  // stacking
+  // top: -20px;
+  // z-index: -1;
+  width: 40%;
+  & > .absolute {
+    left: 40%;
+    right: 20%;
+    top: 10%;
+    height: 100%; // <- it will give original size of parent element if we remove it will be take parents measues after left,right,top.
+  }
+}
+
+.absolute {
+  background: purple;
+  border: 2px solid red;
+  padding: 10px;
+  position: absolute;
+  bottom: 10%;
+  left: 40%;
+  width: 100%; // <- it will give  width
+}
+```
+
+## Position and Stacking
+
+Css position is a property used for setting a element to a perticular location on the page based on the value we set. You can follow along [Codepen](https://codepen.io/Wolfie12/pen/dymExKo).
+
+There 5 values that we can set apart from global values
+
+```scss
+position: static;
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+```
+
+with that for position and stacking we have some some proerties. `top` , `bottom` , `left` , `right` , `z-index`.
+
+## Static
+
+Static is the Value that is default for postion on all the elements. the postions properties does not work on static position.
+
+## Relative
+
+relative will align the element normally flow of the document and than as we put value of `top` and other properties. let's look into [Codepen][https://codepen.io/wolfie12/pen/dymexko]. as you look if you can set values either `top` or `bottom` and `left` or `right` which ever will put first will be applied. now what if there are two elements are overlaping one another. in order to solve which element should have priproty we will use `z-index` we can set either in positive or negitve value for stacking elements.
+
+```scss
+.relative {
+  background: green;
+  border: 2px solid red;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 30px;
+  right: -200px; // <-does not work if left applied
+  bottom: 20px; // <-does not work if top applied
+
+  // stacking
+  top: -20px;
+  z-index: -1;
+  // z-index: 0;
+}
+```
+
+![abouslte](https://ik.imagekit.io/5aalo5l7bu7/DevBlog/Position_Z1-8NNgW9S.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676486551402)
+
+Note : `z-index` also does not work on static which is default so you if we put negative value on static it will not work.
+
+## absolute
+
+absolute will remove from normal flow of alignment and it will placed in the body based on the nearest parent who have relative positioned or if not found it placed based on initial containing block elements and `top` and other properites.
+
+Another thing it is diffrent from relative position is that we can use all the properties `top` , `bottom` , `left` , `right` all will be applied.
+
+```scss
+.relative {
+  background: green;
+  border: 2px solid red;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  right: -100px; // <-does not work if left applied
+  bottom: 20px; // <-does not work if top applied
+  // stacking
+  // top: -20px;
+  // z-index: -1;
+  width: 40%;
+  & > .absolute {
+    left: 40%;
+    right: 20%;
+    top: 10%;
+    height: 100%; // <- it will give original size of parent element if we remove it will be take parents measues after left,right,top.
+  }
+}
+
+.absolute {
+  background: purple;
+  border: 2px solid red;
+  padding: 10px;
+  position: absolute;
+  bottom: 10%;
+  left: 40%;
+  width: 100%; // <- it will give  width
+}
+```
+
+![fixed position](https://ik.imagekit.io/5aalo5l7bu7/DevBlog/Positions_qLDRsQ_Xf9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676486550912)
+
+Note : with absolute positioing the `width` will be auto fitted into parent element based on aligning values the `width` of the element will be auto fitted unless we provide explicite value.
+
+## sticky
+
+The Element will postion just like any aother normal static element and than offset to nerest parent which is scollable size of height. It will also take 100% width on the parent unless expilticty we set the value. if you look at the code pen if you appy `bottom` or `right` it will not work. sticky is by means design to create alignment where it is already visible in the containing block. So by definition it should not be "sticked" to the bottom. I don't really know why it does't support right 🤷‍♂️ but we have `fixed` to solve that.
+
+Note: Sticky is usally used like Navbar or large Containing lists with lables to display at top.
+
+<video width="320" height="240" controls>
+  <source
+    src="https://ik.imagekit.io/5aalo5l7bu7/DevBlog/Video2_rFVi1xLqXa.mov?ik-sdk-version=javascript-1.4.3&updatedAt=1676486551472"
+    type="video/mp4"
+  />
+</video>
+
+## Fixed
+
+fixed element is removed from the normal document flow, and no space is created for the element in the page layout. the element will be displyed based on the `top` and other alignment values if no values is provided than the element will be stay hidden.
+
+As i mention above it does support `bottom` and `right` also with postion set to `fixed` it will not take all the space to the parent but will take content's size.
+another think you might think that why can't just use `absolute` but it will cause problem where tha parent container has dymic content that can expand.
+
+Note : if we set `left` than `right` will not work even if it was placed after the `left` and if `top` and `bottom` both provided than only there are two possible ways
+1] if the height is set than `bottom` will not apply
+2] if height is not given than the element will be strached from `top` value to `bottom` value.
+
+<video width="320" height="240" controls>
+  <source
+    src="https://ik.imagekit.io/5aalo5l7bu7/DevBlog/Video_tksdqwTmnV.mov?ik-sdk-version=javascript-1.4.3&updatedAt=1676486551241"
+    type="video/mp4"
+  />
+</video>
+
+That was it yay 🎉 hope you enjoy and got the working of positioing elements in css.
+If you want to reach out to me you can on [Twitter](https://twitter.com/Priyang_Bawa) or [linkedin](https://www.linkedin.com/in/priyang-patel-948685176/)

@@ -28,7 +28,9 @@ function Comment() {
   return (
     <div className="mx-md font-VT323 text-7xl">
       <h2>Comments</h2>
-      <CommentComponent commentBox={commentBox} />
+      {process.env.NODE_ENV === "production" ? (
+        <CommentComponent commentBox={commentBox} />
+      ) : null}
     </div>
   );
 }

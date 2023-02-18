@@ -66,7 +66,7 @@ export default function Blogs() {
         </h2>
       </div>
 
-      <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:mx-auto prose-img:rounded-3xl md:p-0 lg:prose-xl">
+      <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:mx-auto prose-img:rounded-3xl prose-video:mx-auto prose-video:w-full md:p-0 lg:prose-xl">
         <Component />
       </article>
       {CommentLoad ? (
