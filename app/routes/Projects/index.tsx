@@ -162,7 +162,7 @@ const ProjectsSections = () => {
       <h1 className="my-5 text-center font-VT323 text-7xl">Projects</h1>
       <div className="my-md flex flex-col md:flex-row">
         <Form
-          className="flex flex-col justify-evenly gap-md"
+          className="mx-auto flex flex-col justify-evenly gap-md"
           onSubmit={SearchProject}
           onReset={ClearAll}
         >
@@ -177,7 +177,7 @@ const ProjectsSections = () => {
           </div>
         </Form>
         <div className="divider lg:divider-horizontal" />
-        <div className="mx-auto">
+        <div className="mx-auto p-5">
           <Tags
             Tags={DefaultTags}
             ClickTag={ClickTag}
@@ -187,7 +187,7 @@ const ProjectsSections = () => {
         </div>
       </div>
 
-      <div className="mb-md flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
         {Projects?.map((item) => (
           <ProjectCard
             Project={item.Data}
@@ -213,14 +213,16 @@ function LoadMoreButton({
   FetchMore: () => void;
 }) {
   return (
-    <Ring
-      ringColor="#fff"
-      OuterRingColor="#0f1729"
-      onClick={FetchMore}
-      className="btn btn-secondary my-md text-2xl sm:btn-block"
-    >
-      <button>{fetcher.state === "loading" ? "Loading" : "Load More"}</button>
-    </Ring>
+    <div className="flex">
+      <Ring
+        ringColor="#fff"
+        OuterRingColor="#0f1729"
+        onClick={FetchMore}
+        className="btn-secondary btn mx-auto my-md text-2xl sm:btn-block"
+      >
+        <button>{fetcher.state === "loading" ? "Loading" : "Load More"}</button>
+      </Ring>
+    </div>
   );
 }
 

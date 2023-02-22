@@ -5,6 +5,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import * as React from "react";
 import { redirect } from "react-router";
 
+import LinksInPage from "~/Component/LinksInPage";
 import { GetBlog } from "~/Utils/Mdx.server";
 import readTime from "~/Utils/readTime";
 
@@ -49,7 +50,7 @@ export default function Blogs() {
   }, []);
 
   return (
-    <div className="my-xl md:mx-2xl">
+    <div className="my-xl md:mx-2xl" id="Blog">
       <figure>
         <img
           src={frontmatter.ImageURL}
@@ -69,6 +70,7 @@ export default function Blogs() {
       <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:mx-auto prose-img:rounded-3xl prose-video:mx-auto prose-video:w-full md:p-0 lg:prose-xl">
         <Component />
       </article>
+      <LinksInPage id="Blog" />
       {CommentLoad ? (
         <React.Suspense
           fallback={

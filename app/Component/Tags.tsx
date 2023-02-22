@@ -28,7 +28,7 @@ function Tags({
             ringColor="#fff"
             OuterRingColor="#0f1729"
             className={clsx(
-              "btn w-[20%] gap-2 text-secondary-content",
+              "btn mx-auto w-[30%] gap-2 text-secondary-content md:w-[20%]",
               Selected ? "bg-secondary-focus" : "bg-secondary"
             )}
             key={item}

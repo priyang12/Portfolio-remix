@@ -6,6 +6,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 
+import LinksInPage from "~/Component/LinksInPage";
 import { GetProject } from "~/Utils/Mdx.server";
 
 export type LoaderData = {
@@ -53,7 +54,7 @@ export default function Project() {
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" id="Project">
       <div className="my-md mx-5 flex justify-between font-bold text-primary sm:mx-sm md:mx-2xl">
         <h1 className="text-2xl md:text-8xl">{frontmatter.Title}</h1>
         <a
@@ -96,6 +97,7 @@ export default function Project() {
       <article className="prose m-auto p-5 prose-h1:text-primary prose-h2:text-primary prose-img:rounded-3xl md:p-0 lg:prose-xl">
         <Component />
       </article>
+      <LinksInPage id="Project" />
     </div>
   );
 }
